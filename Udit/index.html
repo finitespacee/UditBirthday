@@ -25,7 +25,7 @@
       margin-bottom: 1.5em;
       text-shadow: 1px 1px 4px #000;
     }
-    .btn, .retry-btn {
+    .btn {
       padding: 1em 2em;
       font-size: 1.2em;
       background: #00ccff;
@@ -33,19 +33,19 @@
       border-radius: 10px;
       cursor: pointer;
       box-shadow: 0 0 15px #000;
-      transition: background 0.3s;
+      transition: background 0.3s, color 0.3s;
       position: relative;
       overflow: hidden;
       color: #000;
       font-weight: bold;
-      margin: 0.5em;
+      margin-bottom: 2em;
+      align-self: center;
     }
-    .btn:hover, .retry-btn:hover {
+    .btn:hover {
       background: #0099cc;
       color: #fff;
     }
     .memes {
-      margin-top: 2em;
       display: flex;
       gap: 15px;
       justify-content: center;
@@ -69,13 +69,6 @@
       0% { transform: rotate(-5deg); }
       100% { transform: rotate(5deg); }
     }
-    #message {
-      margin-top: 1em;
-      font-size: 1.1em;
-      color: #ff4444;
-      text-shadow: 1px 1px 4px #000;
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -83,15 +76,9 @@
   <h1>Welcome Udit Bhai 🔥💼</h1>
   <p>muhehehe click :p</p>
 
-  <button class="btn" id="surpriseBtn" onclick="triggerSurprise()" title="Click me for the *ultimate* surprise! 🎁🎉">
+  <button class="btn" onclick="triggerSurprise()" title="Click me for the *ultimate* surprise! 🎁🎉">
     Click here for surprise 😉🤭🤭
   </button>
-  
-  <button class="retry-btn" id="retryBtn" style="display:none;" onclick="retryAudio()">
-    Retry Audio Playback 🔄
-  </button>
-
-  <div id="message"></div>
 
   <div class="memes">
     <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" title="CLIKC HEHEHE">
@@ -105,52 +92,51 @@
     </a>
   </div>
 
-  <!-- Correct unique IDs and forward slashes -->
-  <audio id="birthdayAudio" src="Udit/audios/funy.mp3" preload="auto"></audio>
-  <audio id="alanWalkerAudio" src="Udit/audios/technoloyia.mp3" preload="auto"></audio>
+  <audio id="audioPlayer" preload="auto"></audio>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    const surpriseBtn = document.getElementById('surpriseBtn');
-    const retryBtn = document.getElementById('retryBtn');
-    const messageDiv = document.getElementById('message');
-    const birthdayAudio = document.getElementById('birthdayAudio');
-    const alanWalkerAudio = document.getElementById('alanWalkerAudio');
+    // Audio URLs to play in sequence
+    const audioUrls = [
+      "https://voca.ro/1nu22wYwDccn",
+      "https://voca.ro/1cSLfYwvlX4q",
+      "https://voca.ro/161Q8Ul3q9Bf"
+    ];
+    let currentIndex = 0;
+    const audioPlayer = document.getElementById('audioPlayer');
 
-    function triggerSurprise() {
-      surpriseBtn.disabled = true;
-      messageDiv.style.display = 'none';
-      retryBtn.style.display = 'none';
+    audioPlayer.volume = 1.0; // max volume
 
-      birthdayAudio.pause();
-      birthdayAudio.currentTime = 0;
-      alanWalkerAudio.pause();
-      alanWalkerAudio.currentTime = 0;
-
-      birthdayAudio.play()
-        .then(() => {
-          return alanWalkerAudio.play();
-        })
-        .then(() => {
-          confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
-          setTimeout(() => {
-            window.location.href = 'flashy.html';
-          }, 2500);
-        })
-        .catch(err => {
-          console.warn("Audio play failed:", err);
-          messageDiv.textContent = "⚠️ Audio playback failed. Please click the button again or check your browser settings.";
-          messageDiv.style.display = 'block';
-          retryBtn.style.display = 'inline-block';
-          surpriseBtn.disabled = false;
-        });
+    function playNextAudio() {
+      if (currentIndex >= audioUrls.length) {
+        confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+        currentIndex = 0; // loop audios
+      }
+      audioPlayer.src = audioUrls[currentIndex];
+      audioPlayer.play().catch(err => {
+        console.warn("Audio playback failed:", err);
+        // If autoplay blocked, listen for user click ANYWHERE to play audio
+        document.body.addEventListener('click', () => {
+          audioPlayer.play();
+        }, { once: true });
+      });
+      currentIndex++;
     }
 
-    function retryAudio() {
-      messageDiv.style.display = 'none';
-      retryBtn.style.display = 'none';
-      triggerSurprise();
+    audioPlayer.addEventListener('ended', playNextAudio);
+
+    window.onload = () => {
+      playNextAudio();
+    };
+
+    // Surprise button behavior
+    function triggerSurprise() {
+      confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+      setTimeout(() => {
+        window.location.href = 'flashy.html';
+      }, 2500);
     }
   </script>
+
 </body>
 </html>
