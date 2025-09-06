@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🔥 Happy Birthday Udit Bhai 🔥</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff0000, #ff9900, #ffff00);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #fff;
+      overflow: hidden;
+      text-align: center;
+      animation: bgFlash 1.5s infinite alternate;
+    }
+
+    @keyframes bgFlash {
+      0% { background: #ff0000; }
+      25% { background: #ff00ff; }
+      50% { background: #00ffff; }
+      75% { background: #ffff00; }
+      100% { background: #00ff00; }
+    }
+
+    h1 {
+      font-size: 4em;
+      margin-top: 2em;
+      text-shadow: 0 0 20px #000, 0 0 40px #ff0;
+      animation: spin 3s infinite linear;
+    }
+
+    p {
+      font-size: 2em;
+      text-shadow: 0 0 10px #000;
+      margin-top: 1em;
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .emoji {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10%;
+        transform: rotate(0deg) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        top: 110%;
+        transform: rotate(720deg) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    canvas.fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .rotating-img {
+      position: absolute;
+      width: 100px;
+      animation: crazySpin 5s linear infinite;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes crazySpin {
+      0% {
+        top: 0;
+        left: 0;
+        transform: rotate(0deg) scale(1);
+      }
+      50% {
+        top: 80%;
+        left: 80%;
+        transform: rotate(720deg) scale(1.5);
+      }
+      100% {
+        top: 0;
+        left: 0;
+        transform: rotate(1440deg) scale(1);
+      }
+    }
+
+    /* Click to Play Overlay */
+    #play-button {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      cursor: pointer;
+      text-shadow: 0 0 10px #ff0, 0 0 20px #f00;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="fireworks"></canvas>
+
+  <h1>🎉🎉 Happy Birthday UDIT BHAI 💥💥</h1>
+  <p>Janamdin ki <strong>bahut bahut badhaiyaan</strong>!<br>
+  Tum jiyo hazaaron saal, saal ke din ho 50 hazaar! 🥵💯</p>
+  <p> 💦🍑💦 LOVE YOU UDIT BHAIII 💦🍑💦</p>
+
+  <!-- Falling Emojis -->
+  <script>
+    const emojiList = [
+      "https://em-content.zobj.net/source/microsoft-teams/337/face-with-tears-of-joy_1f602.png",
+      "https://em-content.zobj.net/source/microsoft-teams/337/fire_1f525.png",
+      "https://em-content.zobj.net/source/microsoft-teams/337/party-popper_1f389.png",
+      "https://em-content.zobj.net/source/microsoft-teams/337/smiling-face-with-heart-eyes_1f60d.png",
+      "https://em-content.zobj.net/source/microsoft-teams/337/clapping-hands_1f44f.png"
+    ];
+
+    function createEmoji() {
+      const img = document.createElement('img');
+      img.src = emojiList[Math.floor(Math.random() * emojiList.length)];
+      img.className = 'emoji';
+      img.style.left = Math.random() * 100 + 'vw';
+      img.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 6000);
+    }
+
+    setInterval(createEmoji, 200);
+  </script>
+
+  <!-- Spinning GIF -->
+  <img src="https://media.tenor.com/Yo1wwCBtw7EAAAAi/party-celebration.gif" class="rotating-img" style="top:0; left:0;" />
+
+  <!-- Fireworks -->
+  <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/index.umd.js"></script>
+  <script>
+    const container = document.querySelector('.fireworks');
+    const fireworks = new Fireworks.default(container, {
+      hue: { min: 0, max: 360 },
+      delay: { min: 5, max: 20 },
+      rocketsPoint: 50,
+      speed: 3,
+      acceleration: 1.05,
+      friction: 0.97,
+      gravity: 1.5,
+      particles: 100,
+      trace: 4,
+      explosion: 5,
+      boundaries: {
+        top: 0,
+        bottom: window.innerHeight,
+        left: 0,
+        right: window.innerWidth,
+      },
+      brightness: {
+        min: 50,
+        max: 80,
+        decay: { min: 0.015, max: 0.03 }
+      },
+    });
+    fireworks.start();
+  </script>
+
+  <!-- Click to Play Overlay -->
+  <div id="play-button">Click to Start Music 🎶</div>
+
+  <script>
+    const playBtn = document.getElementById('play-button');
+    const audio = new Audio("https://media.vocaroo.com/mp3/16ayZ4xJRCMc");
+    audio.loop = true;
+
+    playBtn.addEventListener('click', () => {
+      audio.play().then(() => {
+        playBtn.style.display = 'none';
+      }).catch(err => {
+        console.error("Playback failed:", err);
+        playBtn.innerText = "Music Playback Failed 😢";
+      });
+    });
+  </script>
+</body>
+</html>

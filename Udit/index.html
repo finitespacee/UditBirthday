@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Udit Bhai – Totally Serious Site</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("https://media.discordapp.net/attachments/881781915496108083/1413873086289412136/166f3d92-7fbf-4e46-b268-688d36a61554.png?ex=68bd836c&is=68bc31ec&hm=08883cae64952fcc7856d6a5a238b3f723080ab7a5018ae52048264616f7e0de&=&format=webp&quality=lossless") center/cover no-repeat;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      font-size: 3.5em;
+      text-shadow: 2px 2px 8px #000;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 1.5em;
+      text-shadow: 1px 1px 4px #000;
+    }
+    .btn {
+      padding: 1em 2em;
+      font-size: 1.2em;
+      background: #00ccff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #000;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover {
+      background: #0099cc;
+    }
+    .memes {
+      margin-top: 2em;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .memes img {
+      width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+      transition: transform 0.3s;
+      cursor: pointer;
+      animation: wobble 2s ease-in-out infinite alternate;
+      animation-play-state: paused;
+      user-select: none;
+    }
+    .memes img:hover {
+      transform: scale(1.1) rotate(5deg);
+      animation-play-state: running;
+    }
+    @keyframes wobble {
+      0% { transform: rotate(-5deg); }
+      100% { transform: rotate(5deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome Udit Bhai 🔥💼</h1>
+  <p>muhehehe click :p</p>
+
+  <button class="btn" onclick="triggerSurprise()" title="Click me for the *ultimate* surprise! 🎁🎉">Click here for surprise 😉🤭🤭</button>
+
+  <div class="memes">
+    <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" title="CLIKC HEHEHE">
+      <img src="https://media.discordapp.net/attachments/881781915496108083/1413873113741131846/dd0c98d4-6306-4310-b5cb-9eaf9ce9a9d0.png?ex=68bd8372&is=68bc31f2&hm=643d4d6d5042290e45668960aee95b85a9b2c2b6bc90a3712cb91c341686e3be&=&format=webp&quality=lossless&width=567&height=509" alt="Rickroll Meme" />
+    </a>
+    <a href="https://www.youtube.com/watch?v=u50UCzk0u7Y" target="_blank" title="LOVE YOUU UDIT BHAI 💪❤🤣😍😊🙏🙏✔">
+      <img src="https://media.discordapp.net/attachments/881781915496108083/1413873112822579332/f75d2d7b9f7cda2eb61dcb7e7eaeb989.png?ex=68bd8372&is=68bc31f2&hm=6f45a3b7e44a9806d1a4e0d7701c8dc1845c404139133bc0d8c10c94cae7c3b6&=&format=webp&quality=lossless&width=455&height=509" alt="Rainbow Meme" />
+    </a>
+    <a href="flashy.html" title="HAPPY BIRDAYYY">
+      <img src="https://cdn.discordapp.com/attachments/881781915496108083/1413873113388679201/4d812189-da0d-46fd-9399-d2d9d6fa5b24.png?ex=68bd8372&is=68bc31f2&hm=eac7a67d71030f07b790f6b260ff327840c29e8de1755a45b2dc84c00e5f2a67&" alt="Birthday Meme" />
+    </a>
+  </div>
+
+  <!-- Totally unnecessary audio that plays on button click -->
+  <audio id="birthdaySong" src="C:\Users\sai\Desktop\HTML\Udit\funy.mp3" preload="auto"></audio>
+  <audio id="birthdaySong" src="C:\Users\sai\Desktop\HTML\Udit\gopgop.mp3" preload="auto"></audio>
+
+  <!-- Alan Walker popular song (replace with actual URL!) -->
+  <audio id="alanWalkerSong" src="C:\Users\sai\Desktop\HTML\Udit\technoloyia.mp3" preload="auto"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    function triggerSurprise() {
+      // Play birthday audio
+      const birthdayAudio = document.getElementById('birthdaySong');
+      birthdayAudio.currentTime = 0;
+      birthdayAudio.play();
+
+      // Play Alan Walker song
+      const alanWalkerAudio = document.getElementById('alanWalkerSong');
+      alanWalkerAudio.currentTime = 0;
+      alanWalkerAudio.play();
+
+      // Fire confetti
+      confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+
+      // Redirect after 2.5 seconds
+      setTimeout(() => window.location.href = 'flashy.html', 2500);
+    }
+  </script>
+</body>
+</html>
