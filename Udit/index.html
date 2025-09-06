@@ -36,9 +36,12 @@
       transition: background 0.3s;
       position: relative;
       overflow: hidden;
+      color: #000;
+      font-weight: bold;
     }
     .btn:hover {
       background: #0099cc;
+      color: #fff;
     }
     .memes {
       margin-top: 2em;
@@ -86,34 +89,35 @@
     </a>
   </div>
 
-  <!-- Totally unnecessary audio that plays on button click -->
-  <audio id="birthdaySong" src="Udit/audios/funy.mp3" preload="auto"></audio>
-  <audio id="birthdaySong" src="Udit/audios/gopgop.mp3" preload="auto"></audio>
-
-  <!-- Alan Walker popular song (replace with actual URL!) -->
-  <audio id="alanWalkerSong" src="Udit/audios/technoloyia.mp3" preload="auto"></audio>
+  <!-- Correct unique IDs and forward slashes -->
+  <audio id="birthdayAudio" src="Udit/audios/funy.mp3" preload="auto"></audio>
+  <audio id="alanWalkerAudio" src="Udit/audios/technoloyia.mp3" preload="auto"></audio>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     function triggerSurprise() {
-      // Play birthday audio
-      const birthdayAudio = document.getElementById('birthdaySong');
+      const birthdayAudio = document.getElementById('birthdayAudio');
+      const alanWalkerAudio = document.getElementById('alanWalkerAudio');
+
       birthdayAudio.currentTime = 0;
-      birthdayAudio.play();
-
-      // Play Alan Walker song
-      const alanWalkerAudio = document.getElementById('alanWalkerSong');
       alanWalkerAudio.currentTime = 0;
-      alanWalkerAudio.play();
 
-      // Fire confetti
+      birthdayAudio.play().catch(err => {
+        console.warn("Birthday audio play failed:", err);
+        alert("Please click the button again or check your browser settings to enable audio playback.");
+      });
+
+      alanWalkerAudio.play().catch(err => {
+        console.warn("Alan Walker audio play failed:", err);
+        alert("Please click the button again or check your browser settings to enable audio playback.");
+      });
+
       confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
 
-      // Redirect after 2.5 seconds
-      setTimeout(() => window.location.href = 'flashy.html', 2500);
+      setTimeout(() => {
+        window.location.href = 'flashy.html';
+      }, 2500);
     }
   </script>
 </body>
 </html>
-
-
