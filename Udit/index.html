@@ -89,26 +89,26 @@
     </a>
   </div>
 
-  <!-- Correct unique IDs and forward slashes -->
   <audio id="birthdayAudio" src="Udit/audios/funy.mp3" preload="auto"></audio>
   <audio id="alanWalkerAudio" src="Udit/audios/technoloyia.mp3" preload="auto"></audio>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
+    function resetAndPlay(audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+      return audioElement.play();
+    }
+
     function triggerSurprise() {
       const birthdayAudio = document.getElementById('birthdayAudio');
       const alanWalkerAudio = document.getElementById('alanWalkerAudio');
 
-      birthdayAudio.currentTime = 0;
-      alanWalkerAudio.currentTime = 0;
-
-      birthdayAudio.play().catch(err => {
-        console.warn("Birthday audio play failed:", err);
-        alert("Please click the button again or check your browser settings to enable audio playback.");
-      });
-
-      alanWalkerAudio.play().catch(err => {
-        console.warn("Alan Walker audio play failed:", err);
+      Promise.all([
+        resetAndPlay(birthdayAudio),
+        resetAndPlay(alanWalkerAudio)
+      ]).catch(err => {
+        console.warn("Audio play failed:", err);
         alert("Please click the button again or check your browser settings to enable audio playback.");
       });
 
